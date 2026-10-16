@@ -120,7 +120,7 @@ export function verdict(est) {
   return {
     level: 'not-yet',
     title: 'まだπとは言えない',
-    detail: `区間が ${fmt(est.lo)}〜${fmt(est.hi)} と広く、3 とも 3.3 とも区別できない。`,
+    detail: `区間が ${fmt(est.lo, 2)}〜${fmt(est.hi, 2)}。3.0〜3.3 に収まるまでは、小数第1位さえ言えない。`,
   };
 }
 
@@ -150,4 +150,14 @@ export function fmt(x, digits = 3) {
   if (x === -Infinity) return '−∞';
   if (!Number.isFinite(x)) return '—';
   return x.toFixed(digits);
+}
+
+/** 写真を1枚ずつ足していったときの推定値と区間の推移(グラフ用)。 */
+export function cumulative(shots, theta0) {
+  const out = [];
+  for (let i = 1; i <= shots.length; i++) {
+    const e = estimatePi(shots.slice(0, i), theta0);
+    if (e) out.push(e);
+  }
+  return out;
 }

@@ -1,0 +1,86 @@
+:root {
+  --bg: #f4ece1;
+  --surface: #fffaf3;
+  --ink: #2a221b;
+  --muted: #776a5d;
+  --line: #e2d4c1;
+  --accent: #c2410c;
+  --accent-ink: #fff;
+  --ok: #0f8a7e;
+  --radius: 14px;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Hiragino Sans", "Noto Sans JP", system-ui, sans-serif;
+  line-height: 1.6;
+  -webkit-text-size-adjust: 100%;
+}
+[hidden] { display: none !important; }
+.screen { max-width: 640px; margin: 0 auto; padding: 16px 16px 48px; display: flex; flex-direction: column; gap: 16px; }
+.app-header h1 { margin: 8px 0 0; font-size: 2.2rem; letter-spacing: 0.08em; }
+.app-header p { margin: 0; color: var(--muted); }
+
+.board { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; display: flex; flex-direction: column; gap: 8px; }
+.pi-row { display: flex; align-items: baseline; gap: 10px; }
+.pi-label { font-size: 1.4rem; color: var(--muted); font-family: Georgia, "Times New Roman", serif; font-style: italic; }
+.pi-num { font-size: 3.4rem; font-weight: 800; line-height: 1; font-variant-numeric: tabular-nums; letter-spacing: 0.02em; }
+.pi-ci { margin: 0; font-size: 1.05rem; font-variant-numeric: tabular-nums; }
+.verdict { border-radius: 10px; padding: 10px 12px; display: flex; flex-direction: column; gap: 2px; font-size: 0.92rem; }
+.verdict strong { font-size: 1.05rem; }
+.v-none { background: #efe7dc; }
+.v-not-yet { background: #fff1d6; }
+.v-off { background: #fde4e1; }
+.v-pi { background: #e2f4ee; }
+.counts { margin: 0; color: var(--muted); font-size: 0.88rem; font-variant-numeric: tabular-nums; }
+.need { margin: 0; font-size: 0.88rem; }
+
+.chart { width: 100%; height: auto; display: block; }
+.chart-grid { stroke: var(--line); stroke-width: 1; }
+.chart-tick { font-size: 10px; fill: var(--muted); }
+.chart-say { fill: #e2f4ee; }
+.chart-pi { stroke: var(--ok); stroke-width: 1.2; stroke-dasharray: 4 3; }
+.chart-pi-label { font-size: 12px; fill: var(--ok); font-style: italic; font-family: Georgia, serif; }
+.chart-band { fill: rgba(194, 65, 12, 0.16); }
+.chart-line { fill: none; stroke: var(--accent); stroke-width: 1.6; }
+.chart-dot { fill: var(--accent); }
+
+.shoot { display: flex; flex-direction: column; gap: 10px; }
+.instr { margin: 0; font-weight: 600; }
+.stage-wrap { border-radius: var(--radius); overflow: hidden; background: #d9c8b0; }
+.stage, .video { display: block; width: 100%; height: auto; touch-action: manipulation; }
+.stage { cursor: crosshair; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 0.8rem; color: var(--muted); }
+.legend-item { display: inline-flex; align-items: center; gap: 6px; }
+.legend-item i { display: inline-block; width: 22px; }
+.shot-stats dl { margin: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.stat { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; }
+.stat dt { font-size: 0.75rem; color: var(--muted); }
+.stat dd { margin: 0; font-weight: 700; font-variant-numeric: tabular-nums; }
+.stat small { display: block; font-weight: 400; font-size: 0.72rem; color: var(--muted); }
+.warn { margin: 6px 0 0; background: #fff1d6; border-radius: 10px; padding: 8px 12px; font-size: 0.88rem; }
+.msg { margin: 0; font-size: 0.9rem; color: var(--muted); }
+.msg:empty { display: none; }
+
+.actions { display: flex; flex-wrap: wrap; gap: 8px; }
+button { font: inherit; cursor: pointer; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); padding: 11px 18px; }
+button:hover { border-color: var(--muted); }
+button.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); font-weight: 700; }
+button.ghost { background: transparent; color: var(--muted); }
+button:disabled { opacity: 0.45; cursor: default; }
+
+.how { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px 16px; font-size: 0.9rem; }
+.how summary { cursor: pointer; font-weight: 700; }
+.how ol { margin: 8px 0 0; padding-left: 1.3em; display: flex; flex-direction: column; gap: 6px; }
+.foot { display: flex; justify-content: center; }
+
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+@media (max-width: 480px) {
+  .shot-stats dl { grid-template-columns: repeat(2, 1fr); }
+  .pi-num { font-size: 2.8rem; }
+}

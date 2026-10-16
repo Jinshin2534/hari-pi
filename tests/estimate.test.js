@@ -141,3 +141,12 @@ describe('needlesNeeded', () => {
     expect(needlesNeeded(estimatePi([{ n: 30, h: 0, r: 0.7 }], th10), th10)).toBeNull();
   });
 });
+
+describe('cumulative', () => {
+  it('写真を足すごとに本数が積み上がる', async () => {
+    const { cumulative } = await import('../src/lib/estimate.js');
+    const c = cumulative([{ n: 30, h: 14, r: 0.7 }, { n: 0, h: 0, r: 0 }, { n: 40, h: 19, r: 0.7 }], th10);
+    expect(c.map((e) => e.n)).toEqual([30, 30, 70]);
+    expect(c[2].hi - c[2].lo).toBeLessThan(c[0].hi - c[0].lo);
+  });
+});
